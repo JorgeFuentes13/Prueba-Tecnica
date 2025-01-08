@@ -3,8 +3,13 @@ import { provideRouter } from '@angular/router';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {
+const config: SocketIoConfig = { url: 'https://stage.allrideapp.com/tech_interview?room=JorgeFuentes13', options: {
+
 }};
+
+// const config: SocketIoConfig = { url: 'http://localhost:5000', options: {
+  
+// }};
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
