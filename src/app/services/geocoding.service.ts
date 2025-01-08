@@ -8,7 +8,7 @@ import { environments } from '../../environments/environments.';
 })
 export class GeocodingService {
 
-  private _apiKey : string = environments.API_KEY_GOOGLE;
+  private _apiKey : string = 'AIzaSyC-SVWk3_veZRi7YgePT-YZ7f_D60zwwGo';
   private _apiGeo : string = 'https://maps.googleapis.com/maps/api/geocode/json';
 
 
