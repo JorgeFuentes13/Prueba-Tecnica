@@ -1,0 +1,14 @@
+
+
+.direction-form{
+    position: absolute;
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    left: 20px; /* Ajusta la distancia desde la izquierda */
+    z-index: 1000; /* Asegura que los elementos queden encima del mapa */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.button{
+    margin-left: 10px;
+}

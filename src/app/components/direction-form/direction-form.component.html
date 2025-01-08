@@ -1,0 +1,18 @@
+
+<form class="direction-form d-flex" 
+[formGroup]="myForm"
+(ngSubmit)="sendDirecction()">
+    <div>
+        <input 
+        formControlName="direction"
+        class="input-group-text" 
+        type="text"
+        placeholder="Dirección..."
+        >
+    </div>
+    <div class="button" >
+        <button class="btn btn-primary"
+        [disabled]="myForm.invalid"
+        >Enviar</button>
+    </div>
+</form>
