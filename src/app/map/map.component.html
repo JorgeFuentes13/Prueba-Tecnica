@@ -1,11 +1,17 @@
 
 <div style="position: relative;">
     <google-map
+    mapId="yourMapId"
     height="100vh" width="100%"
     [center]="center"
     [zoom]="zoom"
     [options]="mapOptions"
-    ></google-map>
+    >
+    @for (position of advancedMarkerPositions; track position) {
+        <map-advanced-marker [position]="position" [options]="advancedMarkerOptions" />
+    }
+</google-map>
 
     <app-direction-form></app-direction-form>
 </div>
+
