@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { DirectionFormComponent } from '../components/direction-form/direction-form.component';
+import { MarkerService } from '../services/marker.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,7 +11,22 @@ import { DirectionFormComponent } from '../components/direction-form/direction-f
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
-export class MapComponent  {
+export class MapComponent implements OnInit  {
+
+
+  private markerService = inject(MarkerService)
+  public MarkerSus: Subscription = Subscription.EMPTY;
+
+  ngOnInit(): void {
+    
+    this.MarkerSus = this.markerService.getGeoDataMarker().subscribe(
+      marker => console.log('dato desde map: ',marker)
+    )
+  }
+
+  ngOnDestroy(): void {
+    this.MarkerSus.unsubscribe();
+  }
 
   center: google.maps.LatLngLiteral = { lat: -33.45694, lng: -70.64827};
   zoom = 11;
@@ -18,4 +35,6 @@ export class MapComponent  {
     mapTypeControl: false,
     streetViewControl: false,
   };
+
+
 }

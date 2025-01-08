@@ -2,6 +2,7 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup,FormBuilder,ReactiveFormsModule, Validators } from '@angular/forms';
 import { GeocodingService } from '../../services/geocoding.service';
+import { MarkerService } from '../../services/marker.service';
 
 @Component({
   selector: 'app-direction-form',
@@ -13,6 +14,7 @@ export class DirectionFormComponent {
 
   private fb = inject(FormBuilder)
   private geocod = inject(GeocodingService)
+  private markerService = inject(MarkerService)
 
   public myForm : FormGroup = this.fb.group({
     direction: ['', [Validators.required]]
@@ -37,7 +39,7 @@ export class DirectionFormComponent {
       if (response.results && response.results.length > 0) {
         const location = response.results[0].geometry.location;
         console.log('Coordenadas:', location);
-        // Actualiza el mapa o realiza otra acción
+        this.markerService.sendGeoDataMarker(location);
       } else {
         console.error('No se encontraron resultados');
       }
@@ -46,8 +48,7 @@ export class DirectionFormComponent {
       console.error('Error al llamar a la API de geocodificación:', err);
     },
     });
-    
     this.myForm.reset();
   }
-  
+
 }
