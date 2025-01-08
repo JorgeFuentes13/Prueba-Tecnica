@@ -34,21 +34,18 @@ export class DirectionFormComponent {
     };
 
   this.geocod.geocodeAddress(direction).subscribe({
-    next: (response) => {
-      console.log('Respuesta de geocodificación:', response);
-      if (response.results && response.results.length > 0) {
-        const location = response.results[0].geometry.location;
-        console.log('Coordenadas:', location);
+    next: (res) => {
+      if (res.results && res.results.length > 0) {
+        const location = res.results[0].geometry.location;
         this.markerService.sendGeoDataMarker(location);
       } else {
         console.error('No se encontraron resultados');
       }
     },
-    error: (err) => {
-      console.error('Error al llamar a la API de geocodificación:', err);
+    error: (error) => {
+      console.error('Error geocodificación:', error);
     },
     });
     this.myForm.reset();
   }
-
 }
